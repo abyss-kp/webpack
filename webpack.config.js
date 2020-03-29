@@ -43,6 +43,12 @@ module.exports = {
             plugins: ['transform-class-properties']
           }
         }
+      },
+      {
+        test: /\.hbs$/,
+        use: [
+          'handlebars-loader'
+        ]
       }
     ]
   },
@@ -62,9 +68,8 @@ module.exports = {
         title: 'my file',
         filename: 'custom_filename.html',
         // filename: 'subfolder/custom_filename.html', // to create this file within a folder
-        meta: {
-          description: 'Some description'
-        }
+        description: 'Some description',
+        template: 'src/index.hbs'
       })
   ]
 }

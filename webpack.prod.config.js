@@ -1,5 +1,5 @@
 const path = require('path') //webpack config file does not support ES6 so require is used instead of import
-const TerserPlugin = require('terser-webpack-plugin') //reduces the size of the bundle
+// const TerserPlugin = require('terser-webpack-plugin') //reduces the size of the bundle
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -10,7 +10,7 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     // publicPath: 'dist/' since including index.html inside dist with HtmlWebpackPlugin now we dont need this prefix
   },
-  mode: "none",
+  mode: "production",
   module: {
     rules: [
       {
@@ -53,7 +53,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new TerserPlugin(),//conpresse the bundle
+    // new TerserPlugin(),//imported by default in prod mode
     new MiniCssExtractPlugin({//bundles css into a separate file
       filename: 'styles.[contenthash].css'
     }),

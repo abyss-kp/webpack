@@ -1,6 +1,7 @@
 const path = require('path') //webpack config file does not support ES6 so require is used instead of import
 const TerserPlugin = require('terser-webpack-plugin') //reduces the size of the bundle
 const MiniCssExtractPlugin=require('mini-css-extract-plugin')
+const {CleanWebpackPlugin}=require('clean-webpack-plugin')
 module.exports = {
   entry: "./src/index.js",//webpack starts the bulid process from this file
   output: {
@@ -48,6 +49,12 @@ module.exports = {
     new TerserPlugin(),
     new MiniCssExtractPlugin({//bundles css into a separate file
       filename: 'styles.[contenthash].css'
+    }),
+    new CleanWebpackPlugin({
+     cleanOnceBeforeBuildPatterns:[
+      '**/*',//This is default behaviour i.e /dist  if cleanOnceBeforeBuildPatterns is not configured
+      path.join(process.cwd(),'build/**/*') //to remove bundles from build folder i.e other than /dist folder
+     ]
     })
   ]
 }

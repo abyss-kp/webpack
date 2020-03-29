@@ -2,7 +2,7 @@ const path = require('path') //webpack config file does not support ES6 so requi
 const TerserPlugin = require('terser-webpack-plugin') //reduces the size of the bundle
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const  HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   entry: "./src/index.js",//webpack starts the bulid process from this file
   output: {
@@ -57,6 +57,14 @@ module.exports = {
         path.join(process.cwd(), 'build/**/*') //to remove bundles from build folder i.e other than /dist folder
       ]
     }),
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin(//create index.html inside /dist folder
+      {//customizing generated HTML files
+        title: 'my file',
+        filename: 'custom_filename.html',
+        // filename: 'subfolder/custom_filename.html', // to create this file within a folder
+        meta: {
+          description: 'Some description'
+        }
+      })
   ]
 }

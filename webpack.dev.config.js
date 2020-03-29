@@ -5,10 +5,16 @@ module.exports = {
   entry: "./src/index.js",//webpack starts the bulid process from this file
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, 'dist'),
     // publicPath: 'dist/' since including index.html inside dist with HtmlWebpackPlugin now we dont need this prefix
   },
   mode: "development",
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist'),
+    index: 'index.html',
+    port: 8003,
+    writeToDisk:true
+  },
   module: {
     rules: [
       {
